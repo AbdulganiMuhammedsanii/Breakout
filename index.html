@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>ECE3140 / CS3420 Final Project Page by Luke, Chris, and Abdul </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  </head>
+  <body style="background-color:rgb(0, 0, 0);">
+    <section class="page-header">
+      <h1 class="project-name has-text-white">Atari Breakout Controlled Via An Embedded System</h1>
+      <h2 class="project-tagline has-text-white">Luke Altman, Chris Choilee, Abdulgani Muhammedsani</h2>
+      <a href="https://github.coecis.cornell.edu/ece3140-sp2023/amm546-cdc227-lma93" class="btn">View base-page on GitHub</a>
+    </section>
+<section class="main-content">
+<h4 class= "has-text-white" style="font-size:40px;">Web Check-In</h4>
+
+<p class="has-text-white">In our first week working on the project, we outlined a plan in order to accomplish all of the major 
+  parts of the project. The plan is outlined below.</p>
+  
+<p class="has-text-white">The plan was to implement the final design through four major steps. Step one was creating the C code that would
+  give an output from the board input. This means as the accelerometer value changed, the board would take that input
+  and put out an output. We also added a light toggle when the output is sent out to show that the board was working
+  properly and correctly reading the motion direction. Step two was creating a Python GUI that set up the Breakout
+  screen. For testing, we mapped the controls to the keys on the keyboard. Step three was creating serial outputs
+  tied to the board that could then be attached to the Breakout game. Finally, step four was changing the game so 
+  the paddle movements were attached to the board.</p>
+  
+ <p class="has-text-white">Addendum: We have taken out the accelerometer implementation from this project due to time constraints. Instead,
+  the game controls are mapped to the board in such a way that the SW1 and SW3 keys toggle them via UART0.</p>
+
+
+<h2 class = "has-text-white"style="font-size:40px;">Introduction</h2>
+<p class="has-text-white">Atari Breakout is a video game released for the first time in 1976. Created by Steve Jobs, Breakout was considered 
+  revolutionary for its use of multiple layers of bricks, its smooth functionality, and its first of a kind use of
+  the atari joystick. While many of the mechanics mimicked Atari Pong, Breakout became a significantly larger culture 
+  phenomenon that sparked hundreds of clones, with one clone even being a packed in file for the first generation
+  Apple Macintosh Home Computer.</p>
+  
+<p class="has-text-white"> In Breakout, the player uses a controller to move a paddle back and forth horizontally across the screen. The 
+  goal is to place the paddle so that a circular ball bounces off of the paddle. The ball will collide with multi-colored
+  bricks abover the board, and when the ball hits the brick the brick will dissappear based on a predetermined "health"
+  of the brick (A.K.A the number of hits from the ball the brick can withstand). The goal of the game is to clear
+  all of the bricks from the game space, and if you can complete a "clean sweep" the player will move onto to a more
+  difficult level where there are more bricks in the space and the bricks have a greater "health."</p>
+  
+<p class="has-text-white">Breakout has for nearly 50 years captivated audiences around the world, and is one of the best selling games of 
+    all time. It also was the game that put Steve Jobs, the head developer, on the map. Without Breakout, the Atari 
+    would never have become as popular, and it can be speculated that Apple may have never started if it wasn't for 
+    the personal profits Job's saw from Breakout and its groundbreaking sales numbers.</p>
+  
+<p class="has-text-white"> During this project, our group learned about game design and some of the difficulties developers have. In particular
+  we learned about developing a GUI for the game, how to create a controller from our FRDMKL46Z, and what parameters of 
+  the game we needed to change in order to make the product more playable and enjoyable using our controller.
+</ol>
+
+<h2 class = "has-text-white" style="font-size:40px;">System Overview and diagram</h2>
+<p class="has-text-white">Our System is initialized in both Python and MCUxpresso. The C code is run first, and connects the COMM port to the board.
+    The C code works by detecting an input into the left and or right button, and will toggle, respectively, the red and green
+    light. The code also sends out through the COMM port a r or an l. The python GUI is in an infinite while loop, and is waiting
+    for both the left and the right button to be pressed in order to start the game. Once the game starts, the python GUI is 
+    waiting for either an r or an l, and when that appears from the port it will move the game paddle to either the left or 
+  the right. </p>
+    
+<iframe class = "media box" style="background-color:rgb(255, 255, 255);" src="https://docs.google.com/drawings/d/1WCSgVHuR8pFSXpXJMJU5FeX0eKgjxiT9l5H8hVL4TvI/edit?usp=sharing" width="640" height="480" allow="autoplay"></iframe>
+    
+
+  
+      
+<h2 class = "has-text-white" style="font-size:40px;">Video</h2> 
+<iframe class = "media box" style="background-color:rgb(255, 255, 255);" src="https://drive.google.com/file/d/1Bgb2wXYa--H3-Y-dtfb0RObEFTDr2mHc/preview" width="640" height="480" allow="autoplay" class = "your-centered-div"></iframe>
+<h2 class = "has-text-white" style="font-size:40px;">Technical description</h2>
+<p class="has-text-white">As we explain throughout our video, the process of first recieving and reading the SW1 and SW3 button clicks and using LEDs to signal button pressing. We used 
+this testing method to ensure buttons were mapped correctly to a function, and implemented these buttons to serve as movement keys in our atari breakout game. We included additional functionality
+will double pressing keys to start the game, as well as a updating score board with a highest score feature. </p>
+      
+<h2 class = "has-text-white" style="font-size:40px;">Testing</h2>
+<p class="has-text-white">In order to test the board, the group attempted a variety of different commands on the board and watched how the serial reacted. 
+  This included pressing both buttons at the same time, holding one button, holding both buttons, pressing one button as fast 
+  as possible, and pressing each back and forth. By watching the serial we were able to also test how the paddle would react 
+  in the GUI.</p>
+
+<h2 class = "has-text-white" style="font-size:40px;">Work Distribution</h2>
+<p class ="has-text-white">Luke, Abdul, and Chris broke up the work evenly. Luke created the Python GUI and did the majority of the writing of the website.
+  Abdul did some of the website and wrote the initial control software that allowed the buttons to function as well as toggle
+  the red and green lights. Abdul also helped with the website. Chris took Abdul's code and Luke's code and integrated them with
+  serial code that allowed the board to communicate with the Python GUI through the UART0 virtual serial port. He also worked on
+  the technical description and testing parts of the website. The group met multiple times to test the project, and create the video,
+  and each member went over all of the code the other members wrote.</p>
+      
+      
+</section>
+
+  
+</body>
+</html>
